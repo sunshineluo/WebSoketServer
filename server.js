@@ -2,7 +2,7 @@
 import { WebSocketServer } from "ws";
 
 // 启动 WebSocket 服务（监听 8080 端口）
-const wss = new WebSocketServer({ port: 8080 });
+const port = process.env.PORT || 8080;
 let onlineCount = 0;
 
 // 监听连接
@@ -33,4 +33,6 @@ function broadcastOnlineCount() {
   }
 }
 
-console.log("🚀 WebSocket 服务器已启动：http://localhost:8080");
+server.listen(port, () => {
+  console.log(`🚀 WebSocket 服务器已启动，端口：${port}`);
+});
